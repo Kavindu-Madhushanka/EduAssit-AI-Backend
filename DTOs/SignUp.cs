@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using System.ComponentModel.DataAnnotations;
 
 namespace eduasst_backend.DTOs
 {
@@ -11,5 +12,9 @@ namespace eduasst_backend.DTOs
         [Required]
         [MinLength(6)]
         public string Password { get; set; }= string.Empty;
+
+
+        [Required]
+        public String FullName {  get; set; }= string.Empty;
     }
 }
