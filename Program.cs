@@ -4,23 +4,23 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllers();
 
-// 🚀 1. React Port එක (5173) සඳහා CORS Policy එකක් මෙතනින් සර්විස් එකට එකතු කරනවා
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173") // 👈 උඹේ React URL එක
+            policy.WithOrigins("http://localhost:5173") 
                   .AllowAnyHeader()
                   .AllowAnyMethod()
-                  .AllowCredentials(); // Token/Cookies යවනවා නම් මේක අනිවාර්යයි
+                  .AllowCredentials(); 
         });
 });
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapibuilder
+// https://aka.ms/aspnet/openapibuilder
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AddDbContext>(options =>
@@ -31,10 +31,10 @@ builder.Services.AddDbContext<AddDbContext>(options =>
 );
 
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IFolderLessonNotesRepository, FolderLessonNotesRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -42,8 +42,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// 🚀 2. හදපු CORS Policy එක මෙතනදී ඇප් එකට ඇක්ටිව් කරනවා 
-// (❗ අනිවාර්යයෙන්ම UseAuthorization එකට උඩින්ම තියෙන්න ඕනේ)
+
 app.UseCors("AllowReactApp");
 
 app.UseAuthorization();
