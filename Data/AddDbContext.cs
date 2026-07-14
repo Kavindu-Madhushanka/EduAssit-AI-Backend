@@ -9,6 +9,7 @@ namespace eduasst_backend.Data
         public AddDbContext(DbContextOptions<AddDbContext> options):base(options) { 
         }
         public DbSet<Users> usersdata { get; set; }
+        public DbSet<SubjectFolder> subjectfolders { get; set; }
     };
     
 
