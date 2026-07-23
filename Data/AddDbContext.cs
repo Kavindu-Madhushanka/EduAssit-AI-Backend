@@ -10,6 +10,8 @@ namespace eduasst_backend.Data
         }
         public DbSet<Users> usersdata { get; set; }
         public DbSet<SubjectFolder> subjectfolders { get; set; }
+
+        public DbSet<LessonData> lessons { get; set; }
     };
     
 
